@@ -3,10 +3,11 @@ from app import app
 
 
 # Views
-@app.route('/')
+@app.route('/news/<int:news_id>')
 def index():
     """
     View root page function that returns the index page and its data
     """
-    return render_template('index.html')
 
+    message = 'News Updates'
+    return render_template('index.html')
