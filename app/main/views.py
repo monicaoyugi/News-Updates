@@ -1,13 +1,26 @@
-from flask import render_template
-from app import app
+from flask import render_template, request
+from . import main
 
 
-# Views
-@app.route('/news/<int:news_id>')
+@main.route('/')
 def index():
-    """
-    View root page function that returns the index page and its data
-    """
+    sources = request.get_sources()
+    if sources:
+        return render_template('index.html', sources=sources)
 
-    message = 'News Updates'
-    return render_template('index.html')
+
+@main.route('/articles', methods=["POST", "GET"])
+def articles_page():
+    if request.method == 'POST':
+        search = request.form.get("search")
+        articles = request.get_articles(search)
+    else:
+        articles = request.get_articles("tech")
+    return render_template('articles.html', articles=articles)
+
+
+@main.route('/article/<id>')
+def source_article(id):
+    source_articles = request.get_article_by_source(id)
+    source = id
+    return render_template('articles_display.html', source_articles=source_articles, )

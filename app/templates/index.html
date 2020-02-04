@@ -16,22 +16,15 @@
 {% block content %}
 
 <!-- Popular news -->
-<h3> Popular Movies</h3>
+<h3> Popular News</h3>
 <ul>
-    {{ macro.displayMovieList(popular)}}
+    {{ macro.displayNewsList()}}
 </ul>
 <!-- Upcoming news  -->
-<h3> Upcoming Movies </h3>
-<ul>
-    {{ macro.displayMovieList(upcoming)}}
-</ul>
-<!-- Now showing news -->
-<h3>Now Showing</h3>
-<ul>
-    {{ macro.displayMovieList(now_showing)}}
-</ul>
+<h3> Upcoming News </h3>
 
 
-{% endblock%}
+
+{% endblock %}
     </body>
 </html>
