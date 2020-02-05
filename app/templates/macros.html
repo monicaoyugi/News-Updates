@@ -1,25 +1,15 @@
-{% extends 'base.html' %}
-{% macro display_source_articles(source_articles) %}
-<div class="container-fluid single_article">
-    <div>
-        <br><br>
-    </div>
-        <div class="overlay">
-            {% for article in articles %}
-            <h1 class="text-white txt">{{source}} articles</h1>
-            {% endfor %}
-        </div>
-    <div class="card-columns">
-        {% for article in source_articles %}
-        <div class="card">
-            <img src="{{article.urlToImage}}" alt="" class="card-img-top">
-            <div class="card-body">
-                <p>{{article.description}}</p>
-                <p>{{ article.publishedAt}}</p>
+{% extends 'bootstrap/base.html' %}
+{% macro displayNewsList(source_articles) %}
+
+        {% for article in sources_articles %}
+            <h1 class="text-white txt"> articles</h1>
+
+            <div class="card">
+                <div class="card-body">
+                    <p>{{article.description}}</p>
+                </div>
+                <p>{{ article.url }}</p>
             </div>
-            <p>{{ article.url }}</p>
-        </div>
         {% endfor %}
-    </div>
-</div>
+
 {% endmacro %}
