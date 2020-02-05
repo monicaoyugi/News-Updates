@@ -1,15 +1,33 @@
-{% extends 'bootstrap/base.html' %}
-{% macro displayNewsList(source_articles) %}
+<!--{% extends 'bootstrap/base.html' %}-->
+<!--{% macro displayNewsList(source_articles) %}-->
 
-        {% for article in sources_articles %}
-            <h1 class="text-white txt"> articles</h1>
-
-            <div class="card">
-                <div class="card-body">
-                    <p>{{article.description}}</p>
-                </div>
-                <p>{{ article.url }}</p>
+        <div class="container-fluid articles">
+    <div>
+        <br><br>
+    </div>
+    <div class="jumbotron hjumbo">
+        <div class="overlay">
+            <h1 class="text-white txt">{{source}} Articles</h1>
+        </div>
+    </div>
+    <div class="card-columns">
+        {% for article in articles %}
+        <div class="card">
+            <img src="{{article.urlToImage}}" alt="" class="card-img-top">
+            <div class="card-body">
+                <p>{{article.description}}</p>
+                <p><br>{{ article.author}}</p>
             </div>
+        </div>
         {% endfor %}
+    </div>
+</div>
+<!--{% endmacro %}-->
 
-{% endmacro %}
+<!--{% extends "index.html" %}-->
+<!--{% block content %}-->
+<!--  <h3> This is the start of my child template</h3>-->
+<!--  <br>-->
+
+<!--  <h3> This is the end of my child template</h3>-->
+<!--{% endblock %}-->

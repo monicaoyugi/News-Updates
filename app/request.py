@@ -53,7 +53,7 @@ def process_result(sources):
         if id:
             result.append(object_news)
 
-        return result
+    return result
 
 # class NewsRequest:
 #     # API_KEY = Config.NEWS_API_KEY

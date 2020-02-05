@@ -1,16 +1,47 @@
-{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!--    <style type="text/css">-->
+    <!--      .container {-->
+    <!--        max-width: 500px;-->
+    <!--        padding-top: 100px;-->
+    <!--      }-->
+    <!--      h2 {color: red;}-->
+    <!--    </style>-->
+</head>
+<body>
+<div class="container">
+    <div class="container-fluid articles">
+        <div>
+            <br><br>
+        </div>
+        <div class="jumbotron hjumbo">
+            <div class="overlay">
+                <h1 class="text-white txt">{{source}} Titles</h1>
+            </div>
+        </div>
+        <div class="card-columns" style="
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+">
+            {% for source in sources %}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h6 class="card-subtitle mb-2 text-muted">{{source.id}}</h6>
+                    <p class="card-text">{{ source.description}}</p>
+                    <a href={{ source.url}} class="card-link">{{ source.url}}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 
-<!-- Popular news -->
-
-{%for sources in sources%}
-        {{sources.id}}
-        {{sources.url}}
-        {{sources.description}}
-
-{%endfor%}
-
-
-
-
-{% endblock %}
-
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
