@@ -1,4 +1,3 @@
-
 import unittest
 
 from app.models import News
@@ -6,7 +5,7 @@ from app.models import News
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.new_source = News('bbc', 'image', 'testing image', 'monica')
+        self.new_source = News('bbc', 'image', 'testing image')
 
     def test_sources(self):
         self.assertTrue(isinstance(self.new_source, News))
