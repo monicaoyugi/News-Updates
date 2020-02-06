@@ -1,18 +1,18 @@
 import urllib.request, json
-from .models import Sources
+from .models import Sources, News
 
 from config import Config
 
 api_key = None
 base_url = None
+article_url = None
 
-
-# NEWS_API_BASE_URL = app.config['NEWS_API_BASE_URL']
 
 def configure_request(app):
-    global api_key, base_url
+    global api_key, base_url, article_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
+    article_url = app.config['ARTICLE_API_BASE_URL']
 
 
 def get_sources():
@@ -25,16 +25,9 @@ def get_sources():
         if response['sources']:
             rep = response['sources']
             result = process_result(rep)
-    # response = requests.get(sources_url)
-    # if response.status_code == 200:
-    #     for data in response.json()['sources']:
-    #         sources.append(data)
-    #     print(sources)
 
     return result
 
-
-#
 
 def process_result(sources):
     result = []
@@ -55,28 +48,30 @@ def process_result(sources):
 
     return result
 
-# class NewsRequest:
-#     # API_KEY = Config.NEWS_API_KEY
-# class NewsRequest:
-# API_KEY = Config.NEWS_API_KEY
 
-# def get_articles(self, article):
-#     articles = []
-#     articles_url = 'https://newsapi.org/v2/everything?q={}&apiKey={}'.format(article, self.API_KEY)
-#     response = request.urlopen(articles_url)
-#     if response.status_code == 200:
-#         for data in response.json()['articles']:
-#             articles.append(data)
-#         print(articles)
-#         return articles
-#
-# def get_article_by_source(self, id):
-#     source_article = []
-#     source_articles_url = 'https://newsapi.org/v2/everything?sources={}&apiKey={}'.format(id, self.API_KEY)
-#     response = request.urlopen(source_articles_url)
-#     if response.status_code == 200:
-#         for data in response.json()['articles']:
-#             source_article.append(data)
-#         print('This is a test string...')
-#         print(source_article)
-#         return source_article
+def get_articles(id):
+    get_articles_url = article_url.format(id, api_key)
+    with urllib.request.urlopen(get_articles_url) as url:
+        get_source = url.read()
+        response = json.loads(get_source)
+        if response['articles']:
+            rep = response['articles']
+            result = process_articles(rep)
+
+    return result
+
+
+def process_articles(articles):
+    result = []
+
+    for news in articles:
+        description = news['description']
+        urlToImage = news['urlToImage']
+        publishedAt = news['publishedAt']
+
+        object_news = News(description, urlToImage, publishedAt)
+
+        if description:
+            result.append(object_news)
+
+    return result
