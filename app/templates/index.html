@@ -26,14 +26,16 @@
         <div class="card-columns" style="
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-">
+    flex-wrap: wrap;">
             {% for source in sources %}
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h6 class="card-subtitle mb-2 text-muted">{{source.id}}</h6>
                     <p class="card-text">{{ source.description}}</p>
                     <a href={{ source.url}} class="card-link">{{ source.url}}</a>
+                    <a href=/article/{{source.id}} class="card-link">{{ source.name}}</a>
+
+
                 </div>
             </div>
             {% endfor %}

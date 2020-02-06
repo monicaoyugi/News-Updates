@@ -1,0 +1,9 @@
+{% extends 'base.html'%}
+
+{% block content%}
+{% for articles in source_articles%}
+    <p>{{articles.description}}</p>
+    <img src={{articles.urlToImage}} width="100px" height="100px">
+{% endfor%}
+{% endblock %}
+
