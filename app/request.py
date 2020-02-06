@@ -1,7 +1,7 @@
-import urllib.request, json
-from .models import Sources, News
+import json
+import urllib.request
 
-from config import Config
+from .models import Sources, News
 
 api_key = None
 base_url = None
